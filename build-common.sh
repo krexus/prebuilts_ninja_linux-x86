@@ -99,16 +99,12 @@ commit_and_push()
     GIT_REPO="$SCRATCH/prebuilts/$PROJ/$OS-x86"
     cd $GIT_REPO
     git rm -r * || true  # ignore error caused by empty directory
-    if [ -n "${EXTRA_FILE}" ]; then
-	git reset -- $EXTRA_FILE
-	git checkout HEAD -- $EXTRA_FILE
-    fi
     mv $INSTALL/* $GIT_REPO
     cp $SCRIPT_FILE $GIT_REPO
     cp $COMMON_FILE $GIT_REPO
 
     git add .
-    git commit -m "Adding binaries for ${INSTALL_VER}${EXTRA_COMMIT_MSG}"
+    git commit -m "Adding binaries for $INSTALL_VER"
 
     # execute this command to upload
     #git push origin HEAD:refs/for/master
